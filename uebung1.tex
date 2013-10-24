@@ -1,0 +1,123 @@
+\begin{section}{1. Übung}
+  \begin{subsection}{Aufgabe 1}
+  \(A \subseteq \mathbb{N}\), \(\mu\) probabilistische Maschine mit \(P(\mu(x)=c_A(x)) = \alpha \geq \frac{3}{4}\). O.B.d.A gibt \(\mu\) nur Werte aus \({0,1}\) zurück.
+  \(\mu'\) arbeitet wie folgt:
+  \begin{enumerate}
+   \item simuliere \(\mu(x)\) und weise diesen Wert \(y_1\) zu.
+   \item simuliere \(\mu(x)\) und weise diesen Wert \(y_2\) zu.
+   \item simuliere \(\mu(x)\) und weise diesen Wert \(y_3\) zu.
+   \item simuliere \(\mu(x)\) und weise diesen Wert \(y_4\) zu.
+   \item simuliere \(\mu(x)\) und weise diesen Wert \(y_5\) zu.
+   \item simuliere \(\mu(x)\) und weise diesen Wert \(y_6\) zu.
+   \item simuliere \(\mu(x)\) und weise diesen Wert \(y_7\) zu.
+   \item Falls Mehrzahl der \(y_i\) gleich 1 ist, gib 1 zurück.
+  \end{enumerate}
+  \begin{align*}
+    P(\mu'(x) \neq c_A(x)) & = P(\text{mind. 4 der }y_i\text{ haben nicht den Wert }c_A(x)) 
+    \\ & = \sum_{k=4}^7 P(\text{genau k der }y_i \neq c_A(x))  
+    \\ & = \binom{7}{4}(1-\alpha)^4\alpha^3 + \binom{7}{5}(1-\alpha)^5\alpha^2 + \binom{7}{6}(1-\alpha)^6\alpha + \binom{7}{7} (1-\alpha)^7
+  \end{align*}
+  Nebenüberlegung: \\
+  \(\alpha(1-\alpha) = -(\alpha - \frac{1}{2})^2 + \frac{1}{4}\). \(\alpha\) ist im Intervall \([\frac{1}{2},1]\) monoton fallend:  \\
+  \(\alpha(1-\alpha) \leq \frac{3}{4}\cdot\frac{1}{4} = \frac{3}{16}\).\\
+  Schätze damit \(1-\alpha \leq \frac{1}{4}\) ab. Damit ist obige Summe \(\leq 0,08\).\\
+  \(P(\mu'(x) = c_A(x)) = 1 - P(\mu'(x) \neq c_A(x)) \geq 1 -0,08 \geq \frac{11}{12}\)
+
+  
+  \end{subsection}
+
+  \begin{subsection}{Aufgabe 2}
+   \begin{enumerate}
+    \item Alphabet \(\{1,2\}\) ist endliche, nichtleere Menge. \checkmark
+    \item \begin{itemize}
+           \item \(K\) ist deterministisch, also auch probabilistischer Algorithmus.
+           \item Legendres Vermutung: zwischen \(n^2\) und \((n+1)^2\) liegt stets eine Primzahl.
+           \item Angenommen, die Vermutung gilt und wir suchen ab \(m = \underbrace{1\hdots1}_{n+1}\) nach einer Primzahl, könnte es sein, dass wir erst bei \((\sqrt{m}+1)^2=m+2\sqrt{m}+1\) fündig werden.
+           \item Testen also, \(O(\sqrt{n}) = O(n^{\frac{1}{2}}) = O(2^{\frac{1}{2} n})\) Zahlen \\
+           \(\Rightarrow\) nicht klar, ob Polynomialzeit möglich ist.
+          \end{itemize}
+    \item \(\varepsilon(e,m)\) liefert \(e\cdot \text{dya}^{-1}(m)\) für \(m \in \{1,2\}^*\) \\
+    \( \Rightarrow\) Polynomialzeit-Algorithmus \checkmark
+    \item \(D(d,c)\) liefert \(\text{dya}(\frac{c}{q})\), wobei \(q\) der größte Primfaktor von \(q\) ist. \(\Rightarrow\) unklar ob im Polynomialzeit möglich, da Faktorisierung nötig.
+    \item Sei \((e,d)\) ein von \(K(1^n)\) genutzes Schlüsselpaar und \(m \in \{1,2\} \\ \Rightarrow (e,d) = (q,1)\), wobei \(q\) die kleine Primzahl mit \(|\text{dya}(q)| > n \\ \Rightarrow \varepsilon(e,m) = q\cdot \text{dya}^{-1} (m)\) \\
+    \(D(d,\varepsilon(e,m)) = D(1, q\cdot\text{dya}^{-1}(m)) = \text{dya}\left(\frac{\overbrace{q\cdot\text{dya}^{-1}(m)}^{c}}{q'}\right)\), wobei \(q'\) der größte Primfaktor von \(c\) ist. \\
+    \(q = q'\), weil \(|m| = n < |\text{dya}(q)|\), \(q\) größter Primfaktor von \(q\cdot\text{dya}^{-1}(m)\) \\
+    \(\Rightarrow D(d,\varepsilon(e,m)) = \text{dya}(\text{dya}^{-1}(m)) = m\) \checkmark
+   \end{enumerate}
+
+  \end{subsection}
+  
+  \begin{subsection}{Hinweise zu Übungsblatt 2}
+   \begin{enumerate}
+    \item Sei $p$ eine Primzahl.\\
+    $\mathbb{F}_p =_{\text{def}} (\mathbb{Z}_p, +_p, \cdot_p)$ mit $+_p, \cdot_p$: Addition und Multiplikation modulo $p$. \\
+    $\mathbb{F}_p$ ist ein endlicher Körper, der (bis auf Isomorphie) einzige endliche Körper mit genau $p$ Elementen. \\
+    Beispiel: $\mathbb{F}_2$: 1 ist das Einselement, 0 ist das Nullelement. $5\cdot3=1$, also ist 3 das inverse Element zu 5.
+    \item Sei $q = p^n$ mit einer Primzahl $p$ und $ n \geq 2$. Ziel: der Körper $\mathbb{F}_q$ mit $q$ Elementen. \\
+    \begin{align*}
+    \mathbb{F}_p[x] & = \text{ Menge aller Polynome mit Koeffizienten aus }\mathbb{F}_p \\
+    & = \{a_nx^n + a_{n-1}x^{n-1}+\cdots+a_1x^1+a_0 | n \geq 0, a_0,\cdots,a_n \in \mathbb{F}_p\} \\
+    & = \{(a_n,\cdots,a_0)|n \geq 0, a_n,\cdots,a_0 \in \mathbb{F}_p\}
+    \end{align*}
+    Die Multiplikation von Elementen aus $\mathbb{F}_p[x]$ entspricht der Polynommultiplikation. \\
+    Beispiel: $\mathbb{F}_2[x]$: $(x^2+1)(x^2+1) = x^4 + 2x^2+1 = x^4+1$
+
+    \begin{subsection}{Definition}
+      Ein Polynom $g \in \mathbb{F}_p[x]$ heißt \underline{irreduzibel} über $\mathbb{F}_p$ \\
+      $\Leftrightarrow_\text{def}$ es gibt keine Polynome $p_1, p_2 \in \mathbb{F}_p[x]$ mit Grad $ \geq 1$ mit $g=p_1\cdot p_2$
+    \end{subsection}
+    \begin{satz}
+      $x^8+x^4+x^3+x+1$ ist irreduzibel über $\mathbb{F}_p$.
+    \end{satz}
+    
+    \begin{definition}
+      Sei $g \in \mathbb{F}_p[x]$ irreduzibel und vom Grad $k \geq 1$. \\
+      \begin{align*}
+       \mathbb{F}_p[x] / g & =_\text{def} \{f \in \mathbb{F}_p[x] | \text{Grad von } f < k\} \\
+       & = \text{Reste bei Polynomdivision durch }g \\
+       & = \{(a_{k-1}, \cdots, a_0) | a_0, \cdots, a_{k-1} \in \mathbb{F}_p\}
+      \end{align*}
+    \end{definition}
+
+    \begin{satz}{[Addition in F]} \\
+      Addition der Polynome, wobei di Koeffizienten entsprechend $\mathbb{F}_p$ addiert werden. 
+    \end{satz}
+    \begin{satz}{[Multiplikation in F]} \\
+      $\underbrace{p_1 \cdot p_2}_{\text{Multiplikation in }\mathbb{F}_p[x]/g} = $ Rest von $\underbrace{p_1 \cdot p_2}_{\text{Multiplikation in }\mathbb{F}_p[x]} $ bei Division durch $g$. \\
+      Beispiel: $p = 2$ und $g(x) = x^8+x^4+x^3+x+1 \in \mathbb{F}_2[x]$. \\ \\
+      Sei $p_1 = x^7+x^2+1$ und $p_2 = x_2 +1 \in \mathbb{F}_2[x]/g$.
+      \begin{align*}
+       p_1 \cdot p_2 & = ((x^7+x^2+1)\cdot(x^2+1)) \text{mod }g \\
+       & = (x^9+x^4+x^2+x^7+x^2+1) \text{mod }g \\
+       & = (x^9+x^7+x^4+1)  \text{mod }g\\
+       & = ((x^9+x^7+x^4+1) -x\cdot g ) \text{mod }g\\
+       & = ((x^9+x^7+x^4+1)-(x^9+x^5+x^4+x^2+x)) \text{mod }g \\
+       & = (x^7+x^5+x^2+x+1) \text{mod }g \\
+       & = (x^7+x^5+x^2+x+1)
+      \end{align*}
+    \end{satz}
+
+    \begin{satz}
+     Sei $p$ eine Primzahl, $k \geq 2$ und $g \in \mathbb{F}_p[x]$ irreduzibel und vom Grad $k$. Dann ist
+     \[\mathbb{F}_{p^k} =_{}\text{def} (\mathbb{F}_p[x]/g, +, \cdot)\]
+     der einzige endliche Körper mit $p^k$ Elementen (bis auf Isomorphie).
+    \end{satz}
+    
+    Beispiel: Sei $g = x^8+x^4+x^3+x+1$. Die Elemente von $\mathbb{F}_{2^8} = \mathbb{F}_2[x]/g = \{(a_7, \cdots, a_0) | a_0,\cdots , a_7 \in \{0,1\}\}$ lassen sich als Bytes interpretieren.
+    \begin{align*}
+     0x03 \cdot 0xa1 & = 0b00000011 \cdot 0b10100001 \\
+     & = (x+1) \cdot (x^7+x^5+1) \text{mod }g \\
+     & = (x^8+x^6+x+x^7+x^5+1)  \text{mod }g \\
+     & = (x^7+x^6+x^5+x^4+x^3) \\
+     & = 0b11111000 = 0xf8
+    \end{align*}
+    $\Rightarrow 3 \cdot 161 = 248$.
+
+
+    
+   \end{enumerate}
+
+  \end{subsection}
+
+
+\end{section}
