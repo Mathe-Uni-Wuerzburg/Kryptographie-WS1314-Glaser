@@ -87,12 +87,12 @@
       Beispiel: $p = 2$ und $g(x) = x^8+x^4+x^3+x+1 \in \mathbb{F}_2[x]$. \\ \\
       Sei $p_1 = x^7+x^2+1$ und $p_2 = x_2 +1 \in \mathbb{F}_2[x]/g$.
       \begin{align*}
-       p_1 \cdot p_2 & = ((x^7+x^2+1)\cdot(x^2+1)) \text{mod }g \\
-       & = (x^9+x^4+x^2+x^7+x^2+1) \text{mod }g \\
-       & = (x^9+x^7+x^4+1)  \text{mod }g\\
-       & = ((x^9+x^7+x^4+1) -x\cdot g ) \text{mod }g\\
-       & = ((x^9+x^7+x^4+1)-(x^9+x^5+x^4+x^2+x)) \text{mod }g \\
-       & = (x^7+x^5+x^2+x+1) \text{mod }g \\
+       p_1 \cdot p_2 & = ((x^7+x^2+1)\cdot(x^2+1)) \mod g \\
+       & = (x^9+x^4+x^2+x^7+x^2+1) \mod g \\
+       & = (x^9+x^7+x^4+1)  \mod g\\
+       & = ((x^9+x^7+x^4+1) -x\cdot g ) \mod g\\
+       & = ((x^9+x^7+x^4+1)-(x^9+x^5+x^4+x^2+x)) \mod g \\
+       & = (x^7+x^5+x^2+x+1) \mod g \\
        & = (x^7+x^5+x^2+x+1)
       \end{align*}
     \end{satz}
@@ -106,18 +106,12 @@
     Beispiel: Sei $g = x^8+x^4+x^3+x+1$. Die Elemente von $\mathbb{F}_{2^8} = \mathbb{F}_2[x]/g = \{(a_7, \cdots, a_0) | a_0,\cdots , a_7 \in \{0,1\}\}$ lassen sich als Bytes interpretieren.
     \begin{align*}
      0x03 \cdot 0xa1 & = 0b00000011 \cdot 0b10100001 \\
-     & = (x+1) \cdot (x^7+x^5+1) \text{mod }g \\
-     & = (x^8+x^6+x+x^7+x^5+1)  \text{mod }g \\
+     & = (x+1) \cdot (x^7+x^5+1) \mod g \\
+     & = (x^8+x^6+x+x^7+x^5+1)  \mod g \\
      & = (x^7+x^6+x^5+x^4+x^3) \\
      & = 0b11111000 = 0xf8
     \end{align*}
     $\Rightarrow 3 \cdot 161 = 248$.
-
-
-    
    \end{enumerate}
-
   \end{subsection}
-
-
 \end{section}
