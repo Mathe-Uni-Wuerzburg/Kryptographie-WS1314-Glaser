@@ -1,37 +1,86 @@
 \begin{section}{Übung 2}
  \begin{subsection}{Aufgabe 1}
   \begin{enumerate}
-   \item $(\{0,1,2,3,4\}, f)$ mit $f(x,y) = (x+y) \text{ mod} 5$ ist eine endliche kommutative Gruppe
+   \item $(\{0,1,2,3,4\}, f)$ mit $f(x,y) = (x+y) \mod  5$ ist eine endliche kommutative Gruppe
    \begin{itemize}
     \item $f: \mathbb{Z}_5 \times \mathbb{Z}_5 \rightarrow \mathbb{Z}_5$ ist total \checkmark
     \item Assoziativität: 
     \begin{align*}
-      f(f(a,b),c) & = f((a+b) \text{ mod} 5,c) \\
-      & = ((a+b) \text{ mod}5 +c) \text{ mod}5 \\
-      & = (a+b+c) \text{ mod}5 = (a+(b+c)\text{ mod}5)\text{ mod}5 \\
-      & = f(a,f(b,c))
+      f(f(a,b),c) & = f((a+b) \mod  5,c) \\
+      & = ((a+b) \mod 5 +c) \mod 5 \\
+      & = (a+b+c) \mod 5 = (a+(b+c)\mod 5)\mod 5 \\
+      & = f(a,f(b,c)) \checkmark
     \end{align*}
-    \item Neutrales Element: $f(x,0) = (x+0)\text{ mod}5 = x$ \\
-    $f(0,x) = (0+x)\text{ mod}5 = x$
+    \item Neutrales Element: $f(x,0) = (x+0)\mod 5 = x$ \\
+    $f(0,x) = (0+x)\mod 5 = x$
     \item Inverses Element: Sei $a \in \mathbb{Z}_5$:
     \begin{align*}
-      b &= (-a)\text{ mod}5 \\
-      &= (a+(-a)\text{ mod}5)\text{ mod}5 \\
-      &= 0\text{ mod}5 = 0
+      b &= (-a)\mod 5 \\
+      &= (a+(-a)\mod 5)\mod 5 \\
+      &= 0\mod 5 = 0
     \end{align*}
-    Eindeutigkeit: $0\text{ mod}5 =  0$ \checkmark \\
+    Eindeutigkeit: $0\mod 5 =  0$ \checkmark \\
     Angenommen $f(a,b') = 0  = f(a,b)$ mit $b' \in \mathbb{Z}_5$ \\
-    $\Rightarrow b' \text{ mod}5 = b\text{ mod}5$\\
+    $\Rightarrow b' \mod 5 = b\mod 5$\\
     $\Rightarrow b' = b$\\
     $\Rightarrow$ genau ein inverses Element.
     \item Kommutativität: \\
-    $f(a,b) = f(b,a) = (a+b)\text{ mod}5 = (b+a)\text{ mod}5 = f(b,a) \checkmark$
+    $f(a,b) = f(b,a) = (a+b)\mod 5 = (b+a)\mod 5 = f(b,a) \checkmark$
    \end{itemize}
-    \item $(\mathbb{Z}_6,f,g)$ mit $f(x,y) = (x+y)\text{ mod}6$, $g(x,y) = (x\cdot y)\text{ mod}6$ ist kein Körper: \\
+    \item $(\mathbb{Z}_6,f,g)$ mit $f(x,y) = (x+y)\mod 6$, $g(x,y) = (x\cdot y)\mod 6$ ist kein Körper: \\
     Damit $(\mathbb{Z}_6),f,g)$ ein Körper ist, muss $(\{1,2,3,4,5\},g)$ kommutative Gruppe sein. \\
-    $\Rightarrow \forall$
+    $\Rightarrow \forall a \in \{1,2,3,4,5\} \exists! b \in {1,2,3,4,5}: [g(a,b) = 1]$
+    \begin{itemize}
+     \item $g(2,1) = 2$
+     \item $g(2,2) = 4$
+     \item $g(2,3) = 0$
+     \item $g(2,4) = 2$
+     \item $g(2,5) = 4$
+    \end{itemize}
+    $\Rightarrow$ 2 besitzt kein inverses Element in $(\{1,2,3,4,5\},g)$ \\
+    $\Rightarrow (\mathbb{Z}_6,f,g)$ ist kein Körper.
+
   \end{enumerate}
 
  \end{subsection}
+ \begin{subsection}{Hinweise zu Übungsblatt 3}
+  Monoalphabetische Verschlüsselung (Substitutionschiffre): \\
+  ABCDEFGHJKLMNOPQRSTUVWXYZ\\ pfeile und so\\ \\ \\
+  $S = (\Sigma, \mathcal{K}, \mathcal{E}, \mathcal{D})$ 
+  \begin{itemize}
+   \item $\Sigma = \{A,\cdots,Z\}$
+   \item Schlüssel: $\pi : \Sigma \rightarrow \Sigma$ Bijektion
+   \begin{align*}
+    P &= \text{ Menge aller Permutationen auf } \Sigma \\
+    &= \{\pi: \Sigma \rightarrow \Sigma | \pi \text{ bijektiv}\}
+   \end{align*}
+   \item $\mathcal{K}(1^n)$ liefert gleichverteilt Element aus $\{(\pi,\pi)|\pi \in P\}$
+   \item $\mathcal{E}(\pi,m_1,m_2, \cdots, m_n) = \pi(m_1) \pi(m_2) \cdots \pi(m_n)$
+   \item $\mathcal{D} = \pi^{-1}(c_1) \pi^{-1}(c_2) \cdots \pi^{-1}(c_n)$
+  \end{itemize}
+  
+  Ist $S$ perfekt sicher? \\
+  \begin{itemize}
+   \item Betrachte Klartext der Länge 1 \\
+   $P_{\Sigma^1}(a) = \frac{1}{26}$ für alle $a \in \Sigma$\\
+   Sei nun $m \in \Sigma^1$ beliebig. \\
+   $P(E_m) = \frac{1}{26}$ [Wahrscheinlichkeit, das Klartext m gewählt wird.] \\
+   Sei $c \in C_1$ beliebig. [$C_1 = \Sigma$ alle möglichen Chiffretexte der Länge 1]
+   \begin{align*}
+      P(E_m|E_c) &= P(\mathcal{K}(1) \text{ liefert Permutation }\pi\text{ mit } \pi(m) = c)\\
+      &= \frac{25!}{26!} = \frac{1}{26} = P(E_m)
+   \end{align*}
+   $\Rightarrow$ S ist perfekt sicher bezüglich $P_{\Sigma^1}$
+
+   
+   
+  \end{itemize}
+
+
+  
+  
+  
+ \end{subsection}
+
 
 \end{section}

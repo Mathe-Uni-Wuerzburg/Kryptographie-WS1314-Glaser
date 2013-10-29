@@ -43,5 +43,59 @@
   \end{enumerate}
 
  \end{subsection}
+ \begin{subsection}{Hinweise zu Übungsblatt 3}
+  Monoalphabetische Verschlüsselung (Substitutionschiffre): \\
+  ABCDEFGHJKLMNOPQRSTUVWXYZ\\ pfeile und so\\ \\ \\
+  $S = (\Sigma, \mathcal{K}, \mathcal{E}, \mathcal{D})$ 
+  \begin{itemize}
+   \item $\Sigma = \{A,\cdots,Z\}$
+   \item Schlüssel: $\pi : \Sigma \rightarrow \Sigma$ Bijektion
+   \begin{align*}
+    P &= \text{ Menge aller Permutationen auf } \Sigma \\
+    &= \{\pi: \Sigma \rightarrow \Sigma | \pi \text{ bijektiv}\}
+   \end{align*}
+   \item $\mathcal{K}(1^n)$ liefert gleichverteilt Element aus $\{(\pi,\pi)|\pi \in P\}$
+   \item $\mathcal{E}(\pi,m_1,m_2, \cdots, m_n) = \pi(m_1) \pi(m_2) \cdots \pi(m_n)$
+   \item $\mathcal{D} = \pi^{-1}(c_1) \pi^{-1}(c_2) \cdots \pi^{-1}(c_n)$
+  \end{itemize}
+  
+  Ist $S$ perfekt sicher? \\
+  \begin{itemize}
+   \item Betrachte Klartext der Länge 1 \\
+   $P_{\Sigma^1}(a) = \frac{1}{26}$ für alle $a \in \Sigma$\\
+   Sei nun $m \in \Sigma^1$ beliebig. \\
+   $P(E_m) = \frac{1}{26}$ [Wahrscheinlichkeit, das Klartext m gewählt wird.] \\
+   Sei $c \in C_1$ beliebig. [$C_1 = \Sigma$ alle möglichen Chiffretexte der Länge 1]
+   \begin{align*}
+      P(E_m|E_c) &= P(\mathcal{K}(1) \text{ liefert Permutation }\pi\text{ mit } \pi(m) = c)\\
+      &= \frac{25!}{26!} = \frac{1}{26} = P(E_m)
+   \end{align*}
+   $\Rightarrow$ S ist perfekt sicher bezüglich $P_{\Sigma^1}$
+   \item Betrachte gleichverteilte Klartexte der Länge 2 \\
+   $P_{\Sigma^2}(m) = \frac{1}{26^2}$ für alle $m \in \Sigma^2$ [$|\Sigma^2| = 26^2$]\\
+   Wähle $m=AF \in \Sigma^2$: \\
+   $P(E_m) = \frac{1}{26^2}$ \\
+   $C_2 = \Sigma^2$ \\
+   Sei $c = ww \in C_2$
+   \begin{align*}
+    P(E_m|E_c) &= P(\mathcal{K}(11) \text{ liefert Permutation }\pi\text{ mit }\pi(A)=w\text{ und }\pi(F)=w)\\
+    &= 0 \neq P(E_m) 
+   \end{align*}
+
+   
+   
+   $\Rightarrow$ S nicht perfekt sicher bezüglich $P_{\Sigma^2}$\\
+   $\Rightarrow$ S nicht perfekt sicher
+
+   
+   
+  \end{itemize}
+
+
+  
+  
+  
+ \end{subsection}
+
 
 \end{section}
