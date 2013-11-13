@@ -1,0 +1,79 @@
+\begin{section}{4. Übung}
+ \begin{subsection}{Aufgabe 1}
+  \begin{enumerate}[a)]
+   \item  $S=(\Sigma, \mathcal{K}, \mathcal{E}, \mathcal{D})$ mit
+   \begin{enumerate}[(i)]
+    \item $\exists n \geq 1 \exists e \in K_n$ mit $P(E_e) \neq \frac{1}{|K_n|}$
+    \item $\forall n \geq 1 \forall m \in \Sigma^n \forall c \in C_n \exists! e\in K_n$ mit $E(e,m)=c$.\\
+    $\Sigma = \{0,1\}$\\
+    $\mathcal{K}(1^n)$ liefert jedes Element aus $\{(e,e)| e \in 0\Sigma^n\}$ mit Wahrscheinlichkeit $\frac{3}{4} \cdot \frac{1}{2^n}$\\
+    $\mathcal{K}(1^n)$ liefert jedes Element aus $\{(e,e)| e \in 1\Sigma^n\}$ mit Wahrscheinlichkeit $\frac{1}{4} \cdot \frac{1}{2^n}$\\
+    $E(e_0 \cdots e_n, m_1 \cdots m_n) := e_0c_1 \cdots c_n$ mit $c_i = (m_ + e_i) \mod 2$ \\
+    $D(e_0 \cdots e_n, c_0 \cdots c_n) := m_1 \cdots m_n$ mit $m_i = (c_i - e_i) \mod 2$\\
+    zu (i): $n = 1, |K_n| = 4, P(e_{00}) = \frac{3}{8} \neq \frac{1}{|K_n|}$\\
+    zu (ii): Sei $m=m_1 \cdots m_n$ und $c = c_0 \cdots c_n \in C_n$\\
+    Der einzige Schlüssel $e \in k_1$ mit $E(e,m)$ ist: $e=e_0\cdots e_m$ mit $e_0 = c_0$ und $e_i = (c_i + m_i) \mod 2$ für $i \geq 1$\\
+    Zeigen, dass $S$ perfekt sicher ist:\\
+    Sei $n \geq 1$ und $P_{\Sigma^n}$ eine Verteilung auf $\Sigma^n$\\
+    Sei $m \in \Sigma^n$ und $c = c_0 \cdots c_n \in C_n$\\
+    O.B.d.A. $c_0 = 0$, zeigen $P(E_m|E_c) = P(E_m)$\\
+    1. Fall: $P(E_m) = 0: P(E_m|E_c) = P(E_m) = 0$\\
+    2. Fall: $P(E_m) > 0$:\\
+    \begin{itemize}
+     \item für jedes  $q \in \Sigma^n$ gibt es genau ein $e \in \Sigma^{n+1}$, sodass $E(e,q) = c$ \\
+     Bezeichnen dieses $e$ mit $e_{m,c}$. \\
+     Es gilt $e_{m,c} \in 0\Sigma^n$
+     \item Aus $P(E_m) > 0, P_{K_n} = \frac{3}{4}\frac{1}{2^n}$ und $E(e_{m,c},m) = c$ folgt $P(E_c) >0$
+     \item $P(E_m|E_c) = \frac{P(E_m)P(E_c|E_m)}{P(E_c)} = \frac{P(E_m)P(e_{m,c}|E_m)}{P(E_c)} = \frac{P(E_m)P(E_c)}{P(E_c)} = \frac{P(E_m)\frac{3}{4}\frac{1}{2^n}}{P(E_c)} = \frac{P(E_m)\frac{3}{4}\frac{1}{2^n}}{\sum_{q \in \Sigma^n} P(E_q)P(E_{e_{q,c}})} = \frac{P(E_m)\frac{3}{4}\frac{1}{2^n}}{\frac{3}{4}\frac{1}{2^n}\sum_{q \in \Sigma^n} P(E_q))} = P(E_m)$
+    \end{itemize}
+    $\Rightarrow$ $S$ ist perfekt sicher.
+    
+   \end{enumerate}
+  \item $S = (\Sigma, \mathcal{K}, \mathcal{E}, \mathcal{D})$ mit 
+  \begin{enumerate}[(i)]
+   \item $\exists n \geq 1 \exists e \in K_n$ mit $P(E_e) \neq \frac{1}{|K_n|}$
+   \item $\forall n \geq 1 \forall m \in \Sigma^n \forall c \in C_n \exists e_1,e_2\in K_n$ mit $e_1 \neq e_2$ und $E(e_1,m)=E(e_2,m)=c$.\\
+   $\Sigma = \{0,1\}, \mathcal{K}(1^n)$ liefert jedes Element aus $\Sigma^{n+1}$ gleichverteilt. \\
+   $\mathcal{E}(e_0 \cdots e_n, m_1 \cdots m_n) = c_1 \cdots c_n$ mit $c_i = (e_i + m_i) \mod 2$\\
+   $\mathcal{D}(e_0 \cdots e_n, c_1 \cdots c_n) = m_1 \cdots m_n$ mit $m_i = (e_i + c_i) \mod 2$\\
+   Zu (ii): $n = 1, m = 0, c = 0: e_1 = 10$ und $e_2 = 00$ mit $\mathcal{E}(10,0) = 0 = \mathcal{E}(00,0)$.\\
+   Zeige, dass $S$ perfekt sicher ist: Sei $n \geq 1, P_{\Sigma^n}$ eine Verteilung über $\Sigma^n$, $m \in \Sigma^n$, $c = c_1 \cdots c_n \in C_n$\\
+   1. Fall: $E(E_m|E_c) = 0 = E(E_m)$\\
+   2. Fall: $E(E_m) > 0$\\
+   Zeigen, dass $P(E_m|E_c) = P(E_m)$:\\
+   Definiere $e_{0,m,c} = 0e_1 \cdots e_n$ und $e_{1,m,c} = 1e_1 \cdots e_n $\\
+   $\Rightarrow e_i = (m_i +c_i) \mod 2$\\
+   $P(E_m|E_c) = \frac{P(E_m)P(E_c|E_m)}{P(E_c)} = \frac{P(E_m)P(E_{e_{0,m,c}} \cup E_{e_{1,m,c}}|P(E_m))}{\sum_{q \in \Sigma^n} P(E_q)P(E_{e_{0,m,c}} \cup E_{e_{1,m,c}})} = \frac{P(E_m)\frac{2}{|K^n|}}{\frac{2}{|K^n|}-\sum_{q \in \Sigma^n} P(E_q)} = P(E_m)$\\
+   $\Rightarrow S$ ist perfekt sicher. \\
+  \end{enumerate}
+  \item $S = (\Sigma, \mathcal{K}, \mathcal{E}, \mathcal{D})$. Annahme: $|\Sigma| \geq 2$:\\
+  zu $n \geq 1$: Wegen $|\Sigma| \geq 2$ finde $m,m' \in \Sigma^n, m \neq m'$.\\
+  Ferner gilt: Ausgaben von $\mathcal{E}(e_i,m)$ und $\mathcal{E}(e_i,m')$ stets verschieden, denn \\
+  $m = \mathcal{D}(d,\mathcal{E}(e,m)) = \mathcal{D}(d,\mathcal{E}(e,m')) = m'$\\
+  Sei $P_{\Sigma^n}$ gleichverteilt auf $\Sigma^n$. Sei $c$ Ausgabe von $\mathcal{E}(e,m')$:\\
+  $0 = P(E_m|E_c \cap E_e) < P(E_m|E_e) = P(E_m)$
+  \end{enumerate}
+ \end{subsection}
+ \begin{subsection}{Hinweise zu Blatt 5}
+  Der erweiterte Euklidsche Algorithmus für 99 und 78:\\
+  Ziel: Berechne $ggT(a,b)$ \\
+  Erweiterter Euklidscher Algorithmus: Berechne $s,t \in \mathbb{Z}$ mit $ggT(a,b) = s\cdot a + t\cdot b$
+  \begin{align*}
+   99 &= 1 \cdot 78 + 21 \\
+   78 &= 3 \cdot 21 + 15 \\
+   21 &= 1 \cdot 15 + 6 \\
+   15 &= 2 \cdot 6 + 3 \\
+   6 &= 2 \cdot 3 + 0 \\
+  \end{align*}
+  $\Rightarrow ggT(99,78) = 3$\\
+  $3 = 15-2\cdot 6= 15-2\cdot (21-2\cdot 15) = 3\cdot 15 - 2 \cdot 21 = 3 \cdot (78-3\cdot 21) -2\cdot 21 = 3\cdot 78 - 11 \cdot 21 = 3\cdot78 -11\cdot(99-1\cdot78) = 14\cdot78 - 11\cdot99 \Rightarrow s = -11$ und $t = 14$ \\
+  in RSA: $\varphi(n) = (p-1)(q-1)$\\
+  Berechne $d = e^{-1} \mod \varphi(n)$. Wir wissen: $ggT(e,\varphi(n))=1$.\\
+  Berechne mit euklidschem Algorithmus: $ggT(e,\varphi(n))=s\cdot\varphi(n) +t\cdot e$\\
+  $t\cdot e = 1 - s \cdot \varphi(n) \Rightarrow t\cdot e = 1 \mod \varphi(n) \Rightarrow t$ ist Inverses von $e \mod \varphi(n)$
+  
+
+ \end{subsection}
+
+
+\end{section}

@@ -1,0 +1,34 @@
+\begin{section}{3. Übung}
+ \begin{subsection}{Aufgabe 2}
+ \begin{enumerate}[a)]
+  \item $\mathcal{M} = \{1,2,3,4,5,6\}$\\
+  $\mathcal{P} = \mathcal{M} \rightarrow [0,1]$\\
+  $\mathcal{P}(x) = \frac{1}{6^5}$ für jedes $x \in \mathcal{M}$ wegen $|\mathcal{M}| = 6^5$
+  \item $G = \{(a_1, \cdots, a_5)\in \mathcal{M}|\{a_1, \cdots, a_5\}\in\{1,2,3,4,5\},\{2,3,4,5,6\}\}$\\
+  \begin{align*}
+   K = \{(a_1, \cdots, a_5) \in & \mathcal{M}| \\
+   \{1,2,3,4\} & \subseteq \{a_1, \cdots, a_5\} \vee \\
+   \{2,3,4,5\} & \subseteq \{a_1, \cdots, a_5\} \vee \\
+   \{3,4,5,6\} & \subseteq \{a_1, \cdots, a_5\} \}
+  \end{align*}
+  \item $P(G) = P((a_1, \cdots, a_5)|\{a_1, \cdots, a_5\} = \{1,2,3,4,5\})$ \\
+  $+ P(G) = P((a_1, \cdots, a_5)|\{a_1, \cdots, a_5\} = \{2,3,4,5,6\})$ \\
+  $= 2 \cdot \frac{5!}{6^5}  =\frac{5}{16^2} \approx 3,1\%$\\
+  $P(K):$
+  \begin{enumerate} [1.]
+   \item Fall: Alle Würfel sind verschieden, dann gibt es die Möglichkeiten (bis auf Permutation): $\underbrace{1234}5$, $\underbrace{1234}6$, $1\underbrace{3456}$, $\underbrace{2345}6$\\
+   $\Rightarrow 4!$ viele Möglichkeiten
+   \item Fall: Genau eine Zahl kommt doppelt vor: Es gibt die Möglichkeiten: $1234$, $2345$, $3456$\\
+   $\Rightarrow 3 \cdot \underbrace{4}_{\text{doppelte Ziffern}} \cdot \overbrace{\binom{5}{2}}^{\text{doppelte Ziffern}} \cdot\underbrace{3!}_{\text{3 verschiedene Möglichkeiten}}$\\
+   $\Rightarrow$ Gesamt: $|K| = 4 \cdot 5! + 3 \cdot 4 \cdot \frac{5!}{2!\cdot3!}\cdot 3! = 4\cdot 5! + 6!$ \\
+   $\Rightarrow P(K) = \sum_{x \in K} P(x) = \sum_{x \in K} \frac{1}{6^5} = \frac{|K|}{6^5} = \frac{4 \cdot 5! + 6!}{6^5}  =\frac{25}{16^2} \approx 15\%$
+  \end{enumerate}
+  %Seite 2 fehlt%
+
+ \end{enumerate}
+
+  
+ \end{subsection}
+
+ 
+\end{section}

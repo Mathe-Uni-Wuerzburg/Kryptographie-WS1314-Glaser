@@ -1,0 +1,47 @@
+\begin{section}{4. Übung}
+ \begin{subsection}{Aufgabe 1}
+  \begin{enumerate}[a)]
+   \item  $S=(\Sigma, \mathcal{K}, \mathcal{E}, \mathcal{D})$ mit
+   \begin{enumerate}[(i)]
+    \item $\exists n \geq 1 \exists e \in K_n$ mit $P(E_e) \neq \frac{1}{|K_n|}$
+    \item $\forall n \geq 1 \forall m \in \Sigma^n \forall c \in C_n \exists! e\in K_n$ mit $E(e,m)=c$.\\
+    $\Sigma = \{0,1\}$\\
+    $\mathcal{K}(1^n)$ liefert jedes Element aus $\{(e,e)| e \in 0\Sigma^n\}$ mit Wahrscheinlichkeit $\frac{3}{4} \cdot \frac{1}{2^n}$\\
+    $\mathcal{K}(1^n)$ liefert jedes Element aus $\{(e,e)| e \in 1\Sigma^n\}$ mit Wahrscheinlichkeit $\frac{1}{4} \cdot \frac{1}{2^n}$\\
+    $E(e_0 \cdots e_n, m_1 \cdots m_n) := e_0c_1 \cdots c_n$ mit $c_i = (m_ + e_i) \mod 2$ \\
+    $D(e_0 \cdots e_n, c_0 \cdots c_n) := m_1 \cdots m_n$ mit $m_i = (c_i - e_i) \mod 2$\\
+    zu (i): $n = 1, |K_n| = 4, P(e_{00}) = \frac{3}{8} \neq \frac{1}{|K_n|}$\\
+    zu (ii): Sei $m=m_1 \cdots m_n$ und $c = c_0 \cdots c_n \in C_n$\\
+    Der einzige Schlüssel $e \in k_1$ mit $E(e,m)$ ist: $e=e_0\cdots e_m$ mit $e_0 = c_0$ und $e_i = (c_i + m_i) \mod 2$ für $i \geq 1$\\
+    Zeigen, dass $S$ perfekt sicher ist:\\
+    Sei $n \geq 1$ und $P_{\Sigma^n}$ eine Verteilung auf $\Sigma^n$\\
+    Sei $m \in \Sigma^n$ und $c = c_0 \cdots c_n \in C_n$\\
+    O.B.d.A. $c_0 = 0$, zeigen $P(E_m|E_c) = P(E_m)$\\
+    1. Fall: $P(E_m) = 0: P(E_m|E_c) = P(E_m) = 0$\\
+    2. Fall: $P(E_m) > 0$:\\
+    \begin{itemize}
+     \item für jedes  $q \in \Sigma^n$ gibt es genau ein $e \in \Sigma^{n+1}$, sodass $E(e,q) = c$ \\
+     Bezeichnen dieses $e$ mit $e_{m,c}$. \\
+     Es gilt $e_{m,c} \in 0\Sigma^n$
+     \item Aus $P(E_m) > 0, P_{K_n} = \frac{3}{4}\frac{1}{2^n}$ und $E(e_{m,c},m) = c$ folgt $P(E_c) >0$
+     \item $P(E_m|E_c) = \frac{P(E_m)P(E_c|E_m)}{P(E_c)} = \frac{P(E_m)P(e_{m,c}|E_m)}{P(E_c)} = \frac{P(E_m)P(E_c)}{P(E_c)} = \frac{P(E_m)\frac{3}{4}\frac{1}{2^n}}{P(E_c)} = \frac{P(E_m)\frac{3}{4}\frac{1}{2^n}}{\sum_{q \in \Sigma^n} P(E_q)P(E_{e_{q,c}})} = \frac{P(E_m)\frac{3}{4}\frac{1}{2^n}}{\frac{3}{4}\frac{1}{2^n}\sum_{q \in \Sigma^n} P(E_q))} = P(E_m)$
+    \end{itemize}
+    $\Rightarrow$ $S$ ist perfekt sicher.
+    
+   \end{enumerate}
+  \item $S = (\Sigma, \mathcal{K}, \mathcal{E}, \mathcal{D})$ mit 
+  \begin{enumerate}[(i)]
+   \item $\exists n \geq 1 \exists e \in K_n$ mit $P(E_e) \neq \frac{1}{|K_n|}$
+   \item $\forall n \geq 1 \forall m \in \Sigma^n \forall c \in C_n \exists e_1,e_2\in K_n$ mit $e_1 \neq e_2$ und $E(e_1,m)=E(e_2,m)=c$.\\
+   $\Sigma = \{0,1\}, \mathcal{K}(1^n)$ liefert jedes Element aus $\Sigma^{n+1}$ gleichverteilt. \\
+   $\mathcal{E}(e_0 \cdots e_n, m_1 \cdots m_n) = c_1 \cdots c_n$ mit $c_i = (e_i + m_i) \mod 2$\\
+   $\mathcal{D}(e_0 \cdots e_n, c_1 \cdots c_n) = m_1 \cdots m_n$ mit $m_i = (e_i + c_i) \mod 2$\\
+   Zu (ii): $n = 1, m = 0, c = 0: e_1 = 10$ und $e_2 = 00$ mit $\mathcal{E}(10,0) = 0 = \mathcal{E}(00,0)$.
+  \end{enumerate}
+
+
+  \end{enumerate}
+
+ \end{subsection}
+
+\end{section}
