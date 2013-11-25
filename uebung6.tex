@@ -1,0 +1,52 @@
+\begin{section}{6. Übung}
+ \begin{subsection}{Aufgabe 1}
+  $\varphi(75) = \varphi(3) \cdot \varphi(5^2) = (3^1 -3^a)(5^2 - 5^1) = 2 \cdot 20 = 40$\\
+  $\varphi(408783) = \varphi(11)\cdot \varphi(23)\cdot\varphi(2011) = 442200$
+ \end{subsection}
+ \begin{subsection}{Aufgabe 3}
+ \begin{enumerate}[a)]
+  \item $\mathbb{Z}_p^*$ hat genau $\varphi(\varphi(p)) = \varphi(p-1)$ Erzeuger.\\
+  Habe $\varphi(p-1) = p-1$. Bemerke für $p \neq 2,3$: $2|p-1 \Rightarrow \varphi(p-1) < p-1 \Rightarrow p \in P\setminus \{2,3\}$ lösen diese Gleichung nicht.\\
+  $1, \cdots, \underbrace{p-1}_{\geq 2}$ Rechnung für $p \in \{2,3\}$ zeigt, dass nur $p=2$ eine Lösung der Gleichung ist.\\
+  $\varphi(p-1) = |\{a \in \{1,\cdots, p-1\}|ggT(a,p-1)=1\}|$. Da $p \in \mathbb{P}\setminus \{2,3\} \Rightarrow |\{1,\cdots,p-1\}|$ und $2\in \{1,\cdots,p-1\}$
+  \item $\varphi(p-1)=p-2$ \\
+  Zum einen $\mathbb{N}_+ \ni \varphi(p-1)= p-2 \Rightarrow p \geq 3$.\\
+  \begin{itemize}
+   \item $p = 3$: $\varphi(p-1)=\varphi(2)=1 = p-2$ \checkmark
+   \item $p>3$: $\varphi(p-1) = |\{i \in \mathbb{N}|1 \leq i \leq p-1 \text{ mit } \underbrace{ggT(i,p-1)}_{2,p-1 \not\in} = 1\}| \leq p-3$\\
+  \end{itemize}
+   Tipp: $p$ ist Primzahl ungleich 2$\Rightarrow$ ungerade $\Rightarrow$ $p-1$ gerade $\Rightarrow 2|p-1$
+  \item $\varphi(p-1) = \frac{1}{3}(p-1)$\\
+  Wegen $\varphi(p-1) \in \mathbb{N}_+$ folgt $3|p-1$. Wie in a): $2|p-1$\\
+  Also schreibe: $p-1 = 2^{n_2}\cdot 3^{n_3} \cdot q$ mit $q \in \mathbb{N}_+, 2 \nmid q, 3\nmid q$ und $n_2, n_3 \in \mathbb{N}_+$.\\
+  $\varphi(p-1) = \varphi(2^{n_2}) \cdot \varphi(3^{n_3}) \cdot \varphi(q) = 2^{n_2-1}\cdot (2-1)\cdot 3^{n_3-1}\cdot (3-1) \cdot \varphi(q) = 2^{n_2} \cdot 3^{n_3-1} \cdot \varphi(q) = \frac{1}{3}(p-1) = 2^{n_2} \cdot 3^{n_3-1} \cdot q \Rightarrow \varphi(q) = q \Rightarrow q = 1$ \\
+  $\Rightarrow p = 2^{n_2} \cdot 3^{n_3}+1$, also gilt die Gleichung für $p \in \{2^k\cdot3^l+1| k,l \in \mathbb{N}_+\}$
+ \end{enumerate} 
+ \end{subsection}
+ \begin{subsection}{Bonusaufgabe}
+  Für jedes $\varepsilon > 0$ soll ein Algorithmus angegeben werden, der bei Eingabe $x \geq 2$ eine Zahl $y$ berechnet mit $\frac{\varphi(x)-y}{\varphi(x)} \leq \varepsilon$.\\
+  Eingabe: $x \in \mathbb{N}, n = \log x$
+  \begin{enumerate}
+   \item $Q=\{p| p \leq n \text{ und } p \text{ prim}\}$
+   \item Zerlege $x=\underbrace{q_1^{e_1} \cdot q_2^{e_2} \cdots q_k^{e_k}}_{=x_1} \cdot x_2$ mit $q_i \in Q$ und $x_2$ hat keine Teiler aus $Q$ 
+   \item $\varphi(x_1) = (q_1^{e_1}-q_1^{e_1-1})\cdots (q_k^{e_k}-q_k^{e_k-1})$
+   \item return $x_2 \cdot \varphi(x_1)$
+  \end{enumerate}
+  Sei $y$ die Ausgabe des Algorithmus, d.h. $y=x_2\cdot \varphi(x_1)$.\\
+  Falls $x_2=1$ wird korrekter Wert ausgegeben, nehmen im Folgenden also $x_2 > 1$ an. \\
+  Aus $ggT(x_1,x_2) = 1$ folgt: $\varphi(x) = \varphi(x_1) \cdot \varphi(x_2) \leq x_2 \cdot \varphi(x_16)$, der Algorithmus liefert also keine zu kleinen Werte aus.\\
+  $\Rightarrow$ genügt zu zeigen, dass $\varepsilon \geq \frac{y-\varphi(x)}{\varphi(x)} = \frac{x_2 \cdot \varphi(x_1) - \varphi(x_1)\cdot \varphi(x_2)}{\varphi(x_1) \cdot \varphi(x_2)} = \frac{x_2 - \varphi(x_2)}{\varphi(x_2)} $\\
+  $\Leftrightarrow \varepsilon \cdot \varphi(x_2) \geq x_2 \cdot \varphi(x_2)$\\
+  $ \Leftrightarrow (1+\varepsilon) \cdot \varphi(x_2) \leq x_2$ (*)\\ \\
+  Sei $x_2 = p_1^{d_1} \cdots p_m^{d_m}$ die Primfaktorzerlegung von $x_2$ $(m \geq 1)$, $p_1 \cdots p_m > n$\\
+  $\Rightarrow m \leq \frac{\log x_2}{\log n}$ (andernfalls $x_2 \geq p_1 \cdots p_m > n^m > n^{\log x_2 / \log n} = 2^{\log n \frac{\log x_2}{\log n}} = x_2 $ Wiederspruch\\
+  $\varphi(x_2) = p_1^{d_1}\cdot\underbrace{(1-\frac{1}{p_1})}_{> 1-\frac{1}{n}}\cdot p_2^{d_2}\cdot\underbrace{(1-\frac{1}{p_2})}_{> 1-\frac{1}{n}}\cdots p_m^{d_m}\cdot\underbrace{(1-\frac{1}{p_m})}_{> 1-\frac{1}{n}} > x_2 \cdot \underbrace{(1 - \frac{1}{n})}_{<1}^m $\\
+  $\geq x_2 \cdot (1-\frac{1}{n})^{\log x_2 / \log n} > x_2 \cdot (1- \frac{1}{n})^{\log x / \log n}$\\
+  $ = x_2 \cdot (1-\frac{1}{n})^{n/ \log n} = [(1-\frac{1}{n})^n]^{1/ \log n} \cdot x_2$ geht gegen $\frac{1}{e}$ für $n \rightarrow \infty$ \\
+  $> (\frac{1}{4})^{1 / \log n} \cdot x_2$ für genügend große $n$ $> x_2 \cdot \frac{1}{1+\varepsilon}$ für genügend große $n$ \\
+  $\Rightarrow$ dies zeigt (*)
+ \end{subsection}
+
+
+
+\end{section}

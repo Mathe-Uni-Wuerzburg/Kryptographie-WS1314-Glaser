@@ -1,0 +1,29 @@
+\begin{section}{5. Übung}
+ \begin{satz}
+  Für $a,b \in \mathbb{N}^+$ liefert der Algorithmus $eged(a,b)$ eine Ausgabe $(d,x,y)$, sodass $d = ggT(a,b)$ und $x,y \in \mathcal{Z}$ und $d=x\cdot a + y\cdot b$. Außerdem besitzt der Algorithmus polynomielle Laufzeit.
+ \end{satz}
+ \begin{proof}
+  \begin{enumerate}
+   \item Algorithmus terminiert:\\
+   $b = d_1 > d_2 > \cdots > d_n = 0$\\
+   $\Rightarrow$ while-Schleife wird höchstens $b$-mal durchlaufen.
+   \item Zeigen $d|a$ und $d|b$:\\
+   $0 = d_n = d_{n-2} \% d_{n-1}$ (*)\\
+   Es gilt: $d|d_i, d|d_{i+1}, \cdots , d|d_{n-1} \Rightarrow d|d_{i-1}$\\
+   Beweis: $d_{i+1} = d_{i-1} \% d$, also $d_{i-1} = k\cdot d_i + d_{i+1}$ für ein $k \in \mathbb{N} \Rightarrow d|d_{i-1}$\\
+   Aus (*) folgt $d|d_0 = a$ und $d|d_1 = b$.
+   \item Jeder Teiler $d'$ von $a$ und $b$ ist auch Teiler von $d_i$.\\
+   $d'|d_0 = a$ und $d'|d_1 = b$\\
+   Es gilt $d'|d_i$ und $d'|d_{i+1} \Rightarrow d'|d_{i+2}$ (**)\\
+   Beweis: $d_{i+2} = d_i \% d_{i+1}$, also \\
+   $d_i = k \cdot d + d_{i+2}$ für ein $k \in \mathbb{N}$\\
+   $\Rightarrow d_{i+2} = d_i -k\cdot d_{i+1} \Rightarrow d'|d_{i+2}$\\
+   aus (**) folgt $d'|d_{n-1} = d$
+   
+   %Unvollständig%
+  \end{enumerate}
+
+ \end{proof}
+
+
+\end{section}
