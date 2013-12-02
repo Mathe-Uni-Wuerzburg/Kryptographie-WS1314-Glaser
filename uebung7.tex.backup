@@ -1,0 +1,27 @@
+\begin{section}{7. Übung}
+ \begin{subsection}{Aufgabe 1}
+   $B$ erzeugt Schlüssel\\
+   $\downarrow$ sendet $p,g,B$ an $A$\\
+   $A$ wählt zufällig $a$\\
+   $\downarrow$\\
+   Gemeinsamer Schlüssel $B^a \mod p$\\
+   $\downarrow A$ sendet $A$ an $B$
+ \end{subsection}
+ \begin{subsection}{Aufgabe 2}
+  Für jedes $n \geq 2$ enthält$\{1, \cdots, 2^n\}$ mindestens $\lfloor \frac{n}{\log_2 n} \rfloor$ Primzahlen.\\
+  Angenommen, es gäbe $n \geq 2$, sodass in $\{1, \cdots, 2^n\}$ genau $k < \lfloor \frac{n}{\log_2 n} \rfloor$ viele Primzahlen $p_1 \leq p_2 \leq \cdots \leq p_k \leq$ liegen. \\
+  Definiere $\varphi: \{1, \cdots, 2^n-1\} \rightarrow \{0, \cdots, n-1\}^k$ mit $x \mapsto (e_1, \cdots, e_k)$ mit $x = \Pi_{i=1}^k p_i^{e_i}$.\\
+  $\varphi$ ist injektiv, denn aus $\varphi(x) = \varphi(y) = (e_1, \cdots, e_k)$ folgt, $y= \Pi p_i^{e_i}=x$.\\
+  $\Rightarrow \underbrace{|\{1,\cdots, 2^n-1\}|}_{= 2^n-1} \leq |\{0,\cdots,n-1\}^k| = n^k < n^{\lfloor \frac{n}{\log_2 n}\rfloor} \leq n^{\frac{n}{\log_2 n}} = (2^{\log_2 n})^{\frac{n}{\log_2 n}} = 2^n$\\
+  $\Rightarrow n^k = 2^n-1 \Rightarrow \{0,\cdots, n-1\}^k$ und $\{1, \cdots, 2^n-1\}$ sind gleichmächtig $\Rightarrow \varphi$ surjektiv.\\
+  $\Rightarrow \exists x \in \{1,\cdots, 2^n-1\}: \varphi(x) = (n-1,n-1,0,0,\cdots,0)$.\\
+  Aus $n\geq 2 \Rightarrow \{2,3\} \subseteq \{1,\cdots,2^n\} \Rightarrow k \geq 2$, da $2,3$ prim.\\
+  
+ \end{subsection}
+
+ \begin{subsection}{Hinweise zur 8. Übung}
+  
+ \end{subsection}
+
+
+\end{section}
