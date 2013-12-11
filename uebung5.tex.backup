@@ -17,7 +17,25 @@
    Es gilt $d'|d_i$ und $d'|d_{i+1} \Rightarrow d'|d_{i+2}$ (**)\\
    Beweis: $d_{i+2} = d_i \% d_{i+1}$, also \\
    $d_i = k \cdot d + d_{i+2}$ für ein $k \in \mathbb{N}$\\
-   $\Rightarrow$
+   $\Rightarrow d_{i+2} = d_i -k\cdot d_{i+1} \Rightarrow d'|d_{i+2}$\\
+   aus (**) folgt $d'|d_{n-1} = d$
+   \item zeige $d=x\cdot a + y \cdot b$:\\
+   Wir zeigen $d_i =x_i \cdot a + y_i \cdot b$ für $i = 0,\cdots,n-1$ mittels Induktion:\\
+   (IA) $i=0$, $i=1$: klar \checkmark\\
+   (IS) $i \rightarrow i+1$: $x_{i+1}\cdot a + y_{i+1} \cdot b = (x_{i-1} - x_i \left\lfloor \frac{d_{i-1}}{d_i} \right\rfloor)\cdot a +(y_{i-1} - y_i \left\lfloor \frac{d_{i-1}}{d_i} \right\rfloor)\cdot b = x_{i-1} \cdot a + y_{i-1} \cdot b - \left\lfloor \frac{d_{i-1}}{d_i} \right\rfloor \cdot (x_i\cdot a + y_i \cdot b) \overset{\text{IV}}{=} d_{i-1} - \left\lfloor \frac{d_{i-1}}{d_i} \right\rfloor \cdot d_i = d_{i-1} \% d_i = d_{i+1}$\\
+   Die Aussage folgt wegen $d=d_{n-1} \cdot x = x_{n-1}$ und $y = y_{n-1}$
+   \item zeigen polynomielle Laufzeit:\\
+   Wir zeigen: $d_{i+2}\leq\frac{1}{2}d_i$ für $i \geq 1$ (***)\\
+   Fallunterscheidung:
+   \begin{enumerate}[1)]
+    \item $d_{i+1} \leq \frac{1}{2}d_i$: Aussage folgt aus $d_{i+2} < d_{i+1}$
+    \item $d_{i+1} > \frac{1}{2}d_i$: Aus $d_{i+1} < d_i$ folgt $\frac{1}{2}d_i < d_{i+1} < d_i < 2\cdot d_{i+1}$\\
+    $\Rightarrow d_{i+2} = d_i \% d_{i+1} = d_i - d_{i+1} < d_i - \frac{1}{2}d_i = \frac{1}{2}d_i$
+   \end{enumerate}
+
+   
+   
+   %Unvollständig%
   \end{enumerate}
 
  \end{proof}
