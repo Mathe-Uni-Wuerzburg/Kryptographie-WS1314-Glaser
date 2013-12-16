@@ -1,0 +1,56 @@
+\begin{section}{9. Übung}
+ \begin{subsection}{Aufgabe 1}
+  def $A(x,gamma,p): $\\
+  \-\ \-\ \-\ \-\ return $ x + p - 1$ \\ \\
+  Soll ein $y$ berechnen mit $x \neq y$ und aber $f_{\gamma,p}(x) = f_{\gamma,p}(y)$.\\
+  $f_{\gamma,p}(x) = \gamma^x \mod p = \gamma^x \cdot 1 \mod p = \gamma^x\cdot\gamma^{p-1}\mod p = \gamma^{x+p-1}\mod p = f_{\gamma,p}(x+p-1) = f_{\gamma,p}(A(x,\gamma,p))$
+ \end{subsection}
+ \begin{subsection}{Aufgabe 3}
+   Allgemeines zu den Komplexitätsklassen $P$ und $NP$: \\
+   Sei $A \subseteq \mathbb{N}$. Die charakteristische Funktion $c_A$ von $A$ sei\\
+   $c_A(x) = \begin{cases}
+              1 \text{ falls } x \in A\\
+              0 \text{ sonst.}
+             \end{cases}$\\
+   $A \in P \Leftrightarrow c_A$ ist in polynomieller Zeit berechenbar. \\
+   $A \in NP \Leftrightarrow c_A$ ist von einer nichtdeterministischen Turing-Maschine in polynomieller Zeit akzeptiert wird.\\ \\
+   Sei $P = NP$ und $S=(\Sigma,K,\mathcal{E},D)$ ein Kryptosystem. Wir wollen einen Algorithmus $A(1^n,e,c)$, der uns $m \in \Sigma^n$ liefert, so dass $P(c=E(e,m)) > 0$. D.h. $c$ ist eine mögliche Ausgabe von $\mathcal{E}(e,m)$. \\
+   Definiere die Menge $M = \{<e,c,w>|e,c,w \in \Sigma^*$ und es gibt ein $m\in \Sigma^*$ mit $|m| = |w|$ und $m\leq w$ in lexikographischer Ordnung, sodass es in der Berechnung von $\mathcal{E}(e,m)$ einen Rechenweg gibt, bei dem $\mathcal{E}(e,m) = c$ gilt$\}$ \\
+   Es gilt $M \in NP$, denn folgender nichtdeterministischer Algorithmus entscheidet $M$:\\
+   \underline{Eingabe: $(e,c,w)$:} 
+   Gehe nichtdeterministisch alle $m \cong w$, $|m| = |w|$ durch:\\
+    \begin{enumerate}[]
+     \item Fasse $\mathcal{E}$ als nichtdeterministische Turingmaschine auf und durchlaufe alle Berechnungswege von $\mathcal{E}(e,m)$, ist $\mathcal{E}(e,m) = c$, gib $TRUE$ zurück.
+    \end{enumerate}
+   $M \in NP \overset{P = NP}{\Rightarrow} M \in P$\\
+   \underline{Definiere $A(1^n,e,c)$:}\\
+   Bestimme $m$ zeichenweise mit $(m = m_1, \cdots, m_n)$. Stelle Anfragen der Form ``$<e,c,w> \in M$?'' mit $w=1\cdot k^{n-1}, w= 2\cdot k^{n-1}, w = (k-1)\cdot k^{n-1}$\\
+   \indent \underline{Nebenbemerkung:} Ist $m_1 = q$, dann ist $<e,c,q\cdot k^{n-1}> \in M$, aber $<e,c,(q-1)\cdot k^{n-1}> \not\in M$\\
+   \noindent Ist $<e,c,q\cdot k^{n-1}>\in M$ und $<e,c,(q-1)\cdot k^{n-1}> \not\in M$, dann setze $m_1 = q$. Bestimme nun $m_2$ durch Anfragen ``$<e,c,w> \in M$?'' mit $w = m_1\cdot 1 \cdot k^{n-2}, \cdots , w = m_1 \cdot (k-1) \cdot k^{n-2}, w = m_1 \cdot k^{n-1}$. Führt man dies so fort, hat man $m$ komplett bestimmt und gibt dies zurück.\\
+   $\Rightarrow A$ ist deterministischer Polynomialzeit-Algorithmus.
+ \end{subsection}
+ \begin{subsection}{Bonusaufgabe}
+  Kontraposition: Sei $S = (\Sigma, K, \mathcal{E}, D)$ ein Kryptosystem und erfülle nicht die Einwegeigenschaft. Das heißt, es existiert ein propabilistischer polynomieller Algorithmus $A$, sodass für unendlich viele $n \in \mathbb{N}$ und ein Polynom $q$ , sodass die Erfolgswahrscheinlichkeit bei folgendem Verfahren mindestens $\frac{1}{q(n)}$ beträgt.
+  \begin{enumerate}[a)]
+   \item Bob erzeugt Schlüsselpaar $(e,d)$ mit $K(1^n)$.
+   \item Bob wählt zufällig $m \in \Sigma^*$, berechnet $c$ als Ausgabe von $\mathcal{E}(e,m)$.
+   \item $A$ ist erfolgreich, wenn $A(1^n,e,c)$ $m$ ausgbt.
+  \end{enumerate}
+  Nicht Semantische Sicherheit: es existiert ein propabilistischer polynomialzeit Algorithmus $B$ und ein Polynom $p$, sodass für unendlich viele $n \in \mathbb{N}$ gilt: Die Erfolgswahrscheinlichkeit von folgendem Protokoll ist mindestens $\frac{1}{2} + \frac{1}{p(n)}$:
+  \begin{enumerate}[a)]
+   \item wie oben...
+   \item Alice wählt $m_1,m_2 \in \Sigma^n$ und sendet diese an Bob.
+   \item Bob wählt $m \in \{m_1, m_2\}$ aus und berechnet die Ausgabe $c$ der Verschlüsselungsfunktion und sendet $c$ an Alice.
+   \item Alice muss mit $B$ entscheiden, ob $m \overset{?}{=} m_1$.
+  \end{enumerate}
+  Beschreibung für den Algorithmus $B$:
+  \begin{itemize}
+   \item berechne Ausgabe $m^*$ von $A(1^n,c)$
+   \item falls $m^* \in \{m_1, m_2\}$, gebe $m^*$ zurück
+   \item sonst gebe zufällig eines der beiden Elemente aus
+  \end{itemize}
+  Die Wahrscheinlichkeit, dass sich $A$ irrt sei $E(P_1)$. Irrt sich der Algorithmus, ist die Wahrscheinlichkeit, dass Alice das richtige Element rät $\frac{1}{2}$.\\
+  $P(\text{Alice errät das Richtige}) = P(E_1) + \frac{1}{2} P(\overline{E_1}) = P(E_1) + \frac{1}{2}[1- P(E_1)] = \frac{1}{2} + \frac{1}{2} P(E_1) \geq \frac{1}{2} + \frac{1}{\underbrace{2\cdot q(n)}_{:= p(n)}}$\\ \\
+  >>Diese Lösung hat sich in der Übung als möglicherweise Falsch herausgestellt, da eine der beiden Nachrichten deutlich häufiger als die andere zurückgegeben werden könnte...>>
+ \end{subsection}
+\end{section}

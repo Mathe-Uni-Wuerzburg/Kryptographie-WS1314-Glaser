@@ -5,7 +5,6 @@
   $x=2^i+2^j+2^k+2^l$\\
   $h^x = h^{2^i+2^j+2^k+2^l} = h^{2^i} \cdot h^{2^j} \cdot h^{2^k} \cdot h^{2^l}$
  \end{subsection}
-
  \begin{subsection}{Zusatzaufgabe}
   $\log_{g,p}$ konnte man effizient berechnen. Man will: $\log_{h,p}$ berechnen. ($p$ Prim, $g,h$ Erzeuger in $\mathbb{Z}_p^*$ )\\
   Behauptung:  $\log_{n,p} x= (\log_{g,p} x \cdot \log_{g,p} h ^{-1}) \mod (p-1)$\\
@@ -16,7 +15,6 @@
   $x = y +k(p-1) \Rightarrow z^x = z^y\cdot z^{k(p-1)} = z^y \underbrace{(z^k)^{p-1}}_{\equiv 1 \mod p} \equiv z^y \mod p $\\
   $h^{\log_{g,p} x \cdot \log_{g,p} h ^{-1} \mod p-1} \equiv h^{\log_{g,p} x \cdot \log_{g,p} h ^{-1}} \equiv g^{\overbrace{\log_{g,p} h \cdot \log_{g,p} h ^{-1}}^{\equiv 1 \mod p-1}\cdot \log_{g,p} x} \equiv g^{1\cdot \log_{g,p} x} \equiv x \mod p$
  \end{subsection}
- 
  \begin{subsection}{Extra}
   \begin{itemize}
    \item Alice entscheidet sich für Kopf oder Zahl
@@ -33,8 +31,5 @@
   $\Rightarrow$ Alice schickt $p,q$\\
   Bob kann $c$ entschlüsseln und erhält $b$\\
   $\Rightarrow$ Beide kennen den Gewinner.
-
  \end{subsection}
-
-
 \end{section}
